@@ -619,7 +619,7 @@ static uint8_t gpioToClkDiv [] =
 
 static int *physToPin ;
 
-static int upDnConvert[3] = {7, 7, 5};
+static int upDnConvert[3] = {0, 2, 1};
 
 /* guenter static int pinToGpio_BP [64] =
 {
@@ -2069,8 +2069,6 @@ void pullUpDnControl (int pin, int pud)
 /*add for BananaPro by LeMaker team*/
 if(BPRVER == version)
 	{	
- 		pud = upDnConvert[pud];
-		
 		if ((pin & PI_GPIO_MASK) == 0)		// On-Board Pin
 		  {
 			   if (wiringPiMode == WPI_MODE_PINS)
@@ -2089,7 +2087,7 @@ if(BPRVER == version)
 					return;
 				}
 
-				pud &= 3 ;
+				pud = upDnConvert[pud]; // convert wiringpi pud to sunxi pud value
 				sunxi_pullUpDnControl(pin, pud);
 				return;
 		  }
