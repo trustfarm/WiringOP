@@ -3,9 +3,13 @@
 This is a modified WiringPi for OrangePi. We call it WiringOP.
 Test fo Orangepi pc
 
+2016.07.27 - trustfarm has configured kernel embedded module i2c,spi to default
+So, No needs to check the moduleLoaded.
+in this code ignore it and go.
+
 ## Download
 ### For Orangepi Pi
-    git clone https://github.com/zhaolei/WiringOP.git -b h3 
+    git clone https://github.com/trustfarm/WiringOP.git 
 ## Installation
     cd WiringOP
     chmod +x ./build

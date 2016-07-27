@@ -193,13 +193,21 @@ static void doLoad (int argc, char *argv [])
 
   args1 [0] = args2 [0] = 0 ;
 	
+  /* 2016.07.27 - cpplover: modified for module loading and check
+     - SPI / I2C is mandatory modules, so it's already included in Kernel.
+                 no needs to check modules. and also name has changed in orangepi - spi-sunxi
+
+	Here skip the module loading check.
+  */
+
   /*add for BananaPro by LeMaker team*/
 	if(BPRVER ==  piBoardRev())
 	{
 	  /**/ if (strcasecmp (argv [2], "spi") == 0)
 	  {
 	    module1 = "spidev" ;
-	    module2 = "spi-sun7i" ;
+	    // module2 = "spi-sun7i" ;
+	    module2 = "spi-sunxi" ;
 	    file1  = "/dev/spidev0.0" ;
 	    file2  = "/dev/spidev0.1" ;
 	    if (argc == 4)
@@ -238,7 +246,8 @@ static void doLoad (int argc, char *argv [])
 	  if (!moduleLoaded (module2))
 	  {
 	    fprintf (stderr, "%s: Unable to load %s\n", argv [0], module2) ;
-	    exit (1) ;
+	    fprintf (stderr, "%s: But, continue to setup. this utils thinks spi/i2c drivers already kernel embedded\n", argv [0], module2) ;
+	    // exit (1) ;
 	  }
 	}
 	else
