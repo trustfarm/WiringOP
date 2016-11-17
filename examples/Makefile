@@ -27,7 +27,7 @@
 DEBUG	= -O3
 CC	= gcc
 INCLUDE	= -I/usr/local/include
-CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe
+CFLAGS	= $(DEBUG) -Wall $(INCLUDE) -Winline -pipe -std=gnu99
 
 LDFLAGS	= -L/usr/local/lib
 LDLIBS    = -lwiringPi -lwiringPiDev -lpthread -lm
@@ -43,7 +43,7 @@ SRC	=	blink.c blink8.c blink12.c					\
 		nes.c								\
 		softPwm.c softTone.c 						\
 		delayTest.c serialRead.c serialTest.c okLed.c ds1302.c		\
-		rht03.c piglow.c
+		rht03.c bpi-extender.c
 
 OBJ	=	$(SRC:.c=.o)
 
